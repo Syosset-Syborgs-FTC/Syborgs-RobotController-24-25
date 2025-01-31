@@ -18,11 +18,21 @@ public class SyborgsBetterAuto extends LinearOpMode {
     SlideSubsystem lift;
     IntakeAndWristSubsystem intakeAndWrist;
     @Override
+
     public void runOpMode() {
         waitForStart();
         initSubsystems();
         sleep(3000);
         arm.setPositionAuto(arm.ARM_SCORE_SAMPLE_IN_HIGH);
+        lift.handleMovementAuto(lift.SLIDE_SCORING_IN_HIGH_BASKET);
+        intakeAndWrist.handleMovementAutonomous(intakeAndWrist.WRIST_FOLDED_IN, intakeAndWrist.INTAKE_DEPOSIT);
+        sleep(3000);
+        intakeAndWrist.handleMovementAutonomous(intakeAndWrist.WRIST_NEUTRAL, intakeAndWrist.INTAKE_OFF);
+        lift.handleMovementAuto(lift.SLIDE_COLLAPSED);
+        arm.setPositionAuto(arm.ARM_COLLECT);
+        drive.handleMovementAuto(61, 0);
+        drive.handleMovementAuto(0, 61);
+
 
     }
     public void initSubsystems() {

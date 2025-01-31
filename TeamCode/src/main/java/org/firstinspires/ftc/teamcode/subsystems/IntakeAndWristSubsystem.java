@@ -12,11 +12,11 @@ public class IntakeAndWristSubsystem {
     private final Servo wrist;
     Telemetry telemetry;
 
-    final double INTAKE_COLLECT = -1.0;
-    final double INTAKE_OFF = 0.0;
-    final double INTAKE_DEPOSIT = 0.5;
-    final double WRIST_FOLDED_IN = 0.2;
-    final double WRIST_FOLDED_OUT = 0.5;
+    public final double INTAKE_COLLECT = -1.0;
+    public final double INTAKE_OFF = 0.0;
+    public final double INTAKE_DEPOSIT = 0.5;
+    public final double WRIST_FOLDED_IN = 0.2;
+    public final double WRIST_FOLDED_OUT = 0.5;
 
     private double intakePower = INTAKE_OFF;
     private double wristPosition = 0.4;
@@ -29,7 +29,10 @@ public class IntakeAndWristSubsystem {
 
         wrist.setPosition(wristPosition);
     }
-
+    public void handleMovementAutonomous(double csServo, double Servo) {
+        intake.setPower(csServo);
+        wrist.setPosition(Servo);
+    }
     @SuppressWarnings("unused")
     public void handleMovementTeleOp(Gamepad gamepad1, Gamepad gamepad2) {
         readControls(gamepad2);

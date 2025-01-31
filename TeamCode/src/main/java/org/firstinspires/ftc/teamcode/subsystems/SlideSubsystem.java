@@ -15,11 +15,11 @@ public class SlideSubsystem {
     private final DcMotorEx slideMotorEx;
     private final Telemetry telemetry;
 
-    final double SLIDE_COLLAPSED = 0.0;
+    public final double SLIDE_COLLAPSED = 0.0;
     boolean holdingReset = false;
     // TODO: Change this to the correct value
-//    final double SLIDE_SCORING_IN_LOW_BASKET = 0.0;
-    final double SLIDE_SCORING_IN_HIGH_BASKET = 540.0;
+//    public final double SLIDE_SCORING_IN_LOW_BASKET = 0.0;
+    public final double SLIDE_SCORING_IN_HIGH_BASKET = 540.0;
     double slidePosition = SLIDE_COLLAPSED;
 
     public SlideSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -68,6 +68,10 @@ public class SlideSubsystem {
         telemetry.addData("SlideSubsystem Target Position", slideMotor.getTargetPosition());
         telemetry.addData("SlideSubsystem Encoder", slideMotor.getCurrentPosition());
         if (slideMotorEx != null) telemetry.addData("SlideSubsystem Current", slideMotorEx.getCurrent(CurrentUnit.AMPS));
+    }
+    public void handleMovementAuto(double pos) {
+        slidePosition = pos;
+        setPosition();
     }
 
     private void setPosition() {

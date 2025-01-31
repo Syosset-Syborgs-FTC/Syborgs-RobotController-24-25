@@ -42,6 +42,7 @@ public class Common {
         oldTime = loopTime;
     }
     public static OptionalDouble yawAngle = OptionalDouble.empty();
+
     public static double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
     }

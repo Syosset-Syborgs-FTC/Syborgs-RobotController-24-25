@@ -22,6 +22,7 @@ public class DriveSubsystem {
             frontRightDrive,
             backLeftDrive,
             backRightDrive;
+    private final DcMotor[] motorList;
     private final YawPIDController pidController = new YawPIDController(0.01, 0.0001, 0.001);
     private double targetYaw;
 
@@ -31,6 +32,7 @@ public class DriveSubsystem {
         frontRightDrive = hardwareMap.dcMotor.get("FR");
         backLeftDrive = hardwareMap.dcMotor.get("BL");
         backRightDrive = hardwareMap.dcMotor.get("BR");
+        motorList = new DcMotor[]{frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive};
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -75,7 +77,9 @@ public class DriveSubsystem {
 
         runWithCorrections(movement, imu);
     }
-
+    public void handleMovementAuto(double y, double x) {
+        cartesianMove(x, y);
+    }
     public void runWithCorrections(MecanumMovement movement, IMU imu) {
         YawPitchRollAngles angles = imu.getRobotYawPitchRollAngles();
         double newAngle = angles.getYaw(AngleUnit.DEGREES);
