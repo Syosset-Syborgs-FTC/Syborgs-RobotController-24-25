@@ -17,7 +17,7 @@ public class IntakeAndWristSubsystem {
     public final double INTAKE_DEPOSIT = 0.5;
     public final double WRIST_FOLDED_IN = 0.2;
     public final double WRIST_FOLDED_OUT = 0.5;
-
+    public final double WRIST_NEUTRAL = 0.4;
     private double intakePower = INTAKE_OFF;
     private double wristPosition = 0.4;
     public IntakeAndWristSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
