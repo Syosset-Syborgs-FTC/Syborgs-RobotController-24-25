@@ -50,10 +50,10 @@ public class DriveSubsystem {
     public void cartesianMove(double cmX, double cmY) {
         Vector target = new Vector(cmX, cmY);
 
-        final int TICKS_PER_CM = 54;
+        final int TICKS_PER_IN = 43;
 
-        int xTicks = (int) (target.getX() * TICKS_PER_CM);
-        int yTicks = (int) (target.getY() * TICKS_PER_CM);
+        int xTicks = (int) (target.getX() * TICKS_PER_IN);
+        int yTicks = (int) (target.getY() * TICKS_PER_IN);
 
         runForAllMotors(motor -> motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER));
 

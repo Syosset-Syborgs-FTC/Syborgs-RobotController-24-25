@@ -72,6 +72,9 @@ public class SlideSubsystem {
     public void handleMovementAuto(double pos) {
         slidePosition = pos;
         setPosition();
+        while (slideMotor.isBusy()) {
+            slideMotorEx.setVelocity(2100);
+        }
     }
 
     private void setPosition() {

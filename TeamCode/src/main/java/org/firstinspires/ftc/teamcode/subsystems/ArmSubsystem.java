@@ -48,6 +48,9 @@ public class ArmSubsystem {
     public void setPositionAuto(double pos) {
         armPosition = Math.max(Math.min(pos, ARM_MAX_HEIGHT), 0);
         setPosition();
+        while (armMotor.isBusy()) {
+            armMotorEx.setVelocity(1500 - armMotor.getCurrentPosition()*0.3);
+        }
     }
 
     public void updateTelemetry() {
