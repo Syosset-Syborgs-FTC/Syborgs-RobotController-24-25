@@ -97,6 +97,12 @@ public class DriveSubsystem {
         double x = gamepad1.left_stick_x;
         double y = -gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
+        if (gamepad1.x) {
+            turn -= 0.1;
+        }
+        if (gamepad1.b) {
+            turn += 0.1;
+        }
         if (gamepad1.dpad_up) y += 0.2;
         if (gamepad1.dpad_down) y -= 0.2;
         if (gamepad1.dpad_right) x += 0.2;
