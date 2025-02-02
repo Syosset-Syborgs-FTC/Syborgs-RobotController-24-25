@@ -19,7 +19,7 @@ public class IntakeAndWristSubsystem {
     public final double WRIST_FOLDED_OUT = 0.5;
     public final double WRIST_NEUTRAL = 0.4;
     private double intakePower = INTAKE_OFF;
-    private double wristPosition = 0.4;
+    private double wristPosition = WRIST_NEUTRAL;
     public IntakeAndWristSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
         intake = hardwareMap.crservo.get("IN");
@@ -29,9 +29,8 @@ public class IntakeAndWristSubsystem {
 
         wrist.setPosition(wristPosition);
     }
-    public void handleMovementAutonomous(double csServo, double Servo) {
-        intake.setPower(csServo);
-        wrist.setPosition(Servo);
+    public void handleMovementAutonomous(double intakePower) {
+        intake.setPower(intakePower);
     }
     @SuppressWarnings("unused")
     public void handleMovementTeleOp(Gamepad gamepad1, Gamepad gamepad2) {
