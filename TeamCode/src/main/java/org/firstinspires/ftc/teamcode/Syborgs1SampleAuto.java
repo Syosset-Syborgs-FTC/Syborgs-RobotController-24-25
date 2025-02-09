@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.subsystems.IMUFactory;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeAndWristSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.SlideSubsystem;
 @SuppressWarnings("unused")
-@Autonomous(name="SyborgsBetterAuto")
-public class SyborgsBetterAuto extends LinearOpMode {
+@Autonomous(name="Syborgs1SampleAuto")
+public class Syborgs1SampleAuto extends LinearOpMode {
     DriveSubsystem drive;
     IMU imu;
     ArmSubsystem arm;
