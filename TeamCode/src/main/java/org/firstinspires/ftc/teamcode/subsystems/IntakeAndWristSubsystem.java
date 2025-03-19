@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class IntakeAndWristSubsystem {
     private final CRServo intake;
-    private final Servo wrist;
+    private final CRServo wrist;
     Telemetry telemetry;
 
     public final double INTAKE_COLLECT = -1.0;
@@ -23,11 +22,11 @@ public class IntakeAndWristSubsystem {
     public IntakeAndWristSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
         intake = hardwareMap.crservo.get("IN");
-        wrist = hardwareMap.servo.get("WR");
+        wrist = hardwareMap.crservo.get("WR");
 
         intake.setPower(INTAKE_OFF);
 
-        wrist.setPosition(wristPosition);
+        wrist.setPower(wristPosition);
     }
     public void handleMovementAutonomous(double intakePower) {
         intake.setPower(intakePower);
@@ -37,19 +36,28 @@ public class IntakeAndWristSubsystem {
         readControls(gamepad2);
 
         intake.setPower(intakePower);
-        wrist.setPosition(wristPosition);
+        wrist.setPower(wristPosition);
     }
     public void updateTelemetry() {
          telemetry.addData("Intake Power", intake.getPower());
-         telemetry.addData("Wrist Position", wrist.getPosition());
+         telemetry.addData("Wrist Position", wrist.getPower());
     }
     private void readControls(Gamepad gamepad) {
+     if (gamepad.left_trigger > 0.5) {
+            // open
+            intake.setPower(0);
+        }
+        if (gamepad.right_trigger > 0.5) {
+            // close
+            intake.setPower(1);
+        }
+        if (gamepad.left_bumper) {
+            // up
+            wrist.setPower(0);
+        }
         if (gamepad.right_bumper) {
-            intakePower = INTAKE_COLLECT;
-        } else if (gamepad.left_bumper) {
-            intakePower = INTAKE_DEPOSIT;
-        } else {
-            intakePower = INTAKE_OFF;
+            // down
+            wrist.setPower(1);
         }
 
     }

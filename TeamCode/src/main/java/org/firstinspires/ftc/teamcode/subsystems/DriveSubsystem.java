@@ -40,7 +40,7 @@ public class DriveSubsystem {
         targetYaw = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
 
         runForAllMotors(motor -> motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE));
-        runForAllMotors(motor -> motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER));
+        runForAllMotors(motor -> motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER));
     }
 
     public boolean isMoving() {

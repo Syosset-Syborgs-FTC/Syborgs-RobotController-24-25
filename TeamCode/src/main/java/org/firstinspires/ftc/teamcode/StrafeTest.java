@@ -26,6 +26,7 @@ public class StrafeTest extends LinearOpMode {
         initSubsystems();
         waitForStart();
         while (opModeIsActive()) {
+
             double m = -gamepad1.left_stick_y;
             double x = 0;
             double y = 0;
